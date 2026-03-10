@@ -44,7 +44,7 @@ export function BioSection() {
               <p className="text-muted-foreground leading-relaxed text-base lg:text-lg">
                 {restBio}
               </p>
-              <div className="grid grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <div className="rounded-xl border border-border/50 bg-primary/5 p-5 text-center">
                   <p className="text-3xl font-bold text-primary">98%</p>
                   <p className="mt-1 text-sm text-muted-foreground">Patient Satisfaction</p>

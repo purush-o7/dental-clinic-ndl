@@ -14,12 +14,15 @@ const featureIcons: Record<string, React.ReactNode> = {
 export function FeatureCard({ feature }: { feature: Feature }) {
   return (
     <Card className="group border-border/50 bg-background/80 backdrop-blur-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-primary/20">
-      <CardHeader>
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
+      {/* Mobile: horizontal compact layout */}
+      <CardHeader className="flex-row items-start gap-4 sm:flex-col sm:items-stretch sm:gap-0">
+        <div className="shrink-0 sm:mb-4 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
           {featureIcons[feature.iconName] ?? <ToothIcon size={28} />}
         </div>
-        <CardTitle className="text-lg">{feature.title}</CardTitle>
-        <CardDescription className="leading-relaxed">{feature.description}</CardDescription>
+        <div>
+          <CardTitle className="text-base sm:text-lg">{feature.title}</CardTitle>
+          <CardDescription className="mt-1.5 leading-relaxed text-sm">{feature.description}</CardDescription>
+        </div>
       </CardHeader>
     </Card>
   );

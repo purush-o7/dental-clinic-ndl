@@ -39,34 +39,41 @@ export function MobileMenu() {
           </svg>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px]">
-        <SheetHeader>
-          <SheetTitle>{CLINIC.name}</SheetTitle>
+      <SheetContent side="right" className="w-[280px]">
+        <SheetHeader className="p-4 pb-2">
+          <SheetTitle className="text-sm font-semibold">{CLINIC.name}</SheetTitle>
         </SheetHeader>
-        <nav className="mt-6 flex flex-col gap-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={cn(
-                "rounded-md px-3 py-2.5 text-base font-medium transition-colors hover:bg-accent",
-                pathname === link.href && "bg-accent text-accent-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="flex flex-col px-2 gap-0.5">
+          {NAV_LINKS.map((link) => {
+            const isFamilyCard = link.href === "/family-card";
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent",
+                  pathname === link.href && "bg-accent text-accent-foreground",
+                  isFamilyCard && "bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600"
+                )}
+              >
+                {isFamilyCard && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                )}
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
-        <div className="mt-8 border-t pt-6">
+        <div className="mx-4 mt-4 border-t pt-4">
           <a
             href={`tel:${CLINIC.phones[0].replace(/\s/g, "")}`}
             className="flex items-center gap-2 text-sm text-muted-foreground"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -78,7 +85,7 @@ export function MobileMenu() {
             </svg>
             {CLINIC.phones[0]}
           </a>
-          <Button asChild className="mt-4 w-full">
+          <Button asChild className="mt-3 w-full" size="sm">
             <Link href="/contact" onClick={() => setOpen(false)}>
               Book Appointment
             </Link>

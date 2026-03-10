@@ -7,7 +7,7 @@ import { HeroActions } from "./hero-actions";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] overflow-hidden lg:min-h-[80vh]">
+    <section className="relative min-h-screen overflow-hidden lg:min-h-[80vh]">
       {/* Animated gradient blobs */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl animate-pulse-soft" />
@@ -24,10 +24,10 @@ export function Hero() {
         <FloatingTooth className="absolute bottom-48 right-[25%] [animation-delay:1.5s]" size={22} />
       </div>
 
-      <Container className="flex min-h-[90vh] items-center lg:min-h-[80vh]">
+      <Container className="flex min-h-screen items-center py-20 lg:min-h-[80vh] lg:py-0">
         <div className="grid w-full gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Text content - entrance animations via CSS */}
-          <div className="flex flex-col justify-center text-center lg:text-left animate-fade-up">
+          <div className="order-2 lg:order-1 flex flex-col justify-center text-center lg:text-left animate-fade-up">
             <Badge variant="secondary" className="mb-6 w-fit mx-auto lg:mx-0 animate-fade-down [animation-delay:200ms]">
               <ToothIcon size={14} className="mr-1.5" />
               Trusted by 5000+ Patients
@@ -50,22 +50,22 @@ export function Hero() {
           </div>
 
           {/* Doctor photo with floating elements */}
-          <div className="hidden items-center justify-center lg:flex animate-blur-in [animation-delay:300ms]">
+          <div className="order-1 lg:order-2 flex items-center justify-center animate-blur-in [animation-delay:300ms]">
             <div className="relative">
-              {/* Tooth outline background decoration — behind everything, enlarged */}
+              {/* Tooth outline background decoration — desktop only */}
               <Image
                 src="/tooth-outline-teal.png"
                 alt=""
                 width={740}
                 height={740}
                 aria-hidden="true"
-                className="pointer-events-none absolute -z-10 w-[56rem] max-w-none animate-pulse-soft left-[68%] -translate-x-1/2 bottom-0 translate-y-[30%]"
+                className="pointer-events-none absolute -z-10 hidden lg:block w-[56rem] max-w-none animate-pulse-soft left-[68%] -translate-x-1/2 bottom-0 translate-y-[30%]"
               />
 
               {/* Spinning subtle ring */}
-              <div className="absolute inset-0 -m-4 rounded-full border-2 border-dashed border-primary/10 animate-spin-slow" />
+              <div className="absolute inset-0 -m-3 rounded-full border-2 border-dashed border-primary/10 animate-spin-slow sm:-m-4" />
 
-              <div className="h-96 w-96 overflow-hidden rounded-full bg-primary/80 ring-4 ring-primary/60 ring-offset-4 ring-offset-background transition-transform duration-500 hover:scale-105">
+              <div className="h-52 w-52 sm:h-64 sm:w-64 lg:h-96 lg:w-96 overflow-hidden rounded-full bg-primary/80 ring-4 ring-primary/60 ring-offset-2 ring-offset-background sm:ring-offset-4 transition-transform duration-500 hover:scale-105">
                 <Image
                   src="/dr-km-reddy.webp"
                   alt="Dr. K.M. Reddy"
@@ -76,8 +76,8 @@ export function Hero() {
                 />
               </div>
 
-              {/* Floating stat cards */}
-              <div className="absolute -right-6 top-6 rounded-xl bg-background/90 p-3 shadow-xl backdrop-blur-sm animate-float">
+              {/* Floating stat cards — hidden on small mobile, shown from sm up */}
+              <div className="absolute -right-4 top-2 hidden sm:block rounded-xl bg-background/90 p-2 sm:p-3 shadow-xl backdrop-blur-sm animate-float sm:-right-6 sm:top-6">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
                     <ToothIcon size={16} className="text-primary" />
@@ -88,7 +88,7 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -left-6 bottom-6 rounded-xl bg-background/90 p-3 shadow-xl backdrop-blur-sm animate-float-delayed">
+              <div className="absolute -left-4 bottom-2 hidden sm:block rounded-xl bg-background/90 p-2 sm:p-3 shadow-xl backdrop-blur-sm animate-float-delayed sm:-left-6 sm:bottom-6">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -99,7 +99,7 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -right-2 bottom-16 rounded-xl bg-background/90 p-3 shadow-xl backdrop-blur-sm animate-float [animation-delay:1s]">
+              <div className="absolute -right-2 bottom-16 hidden lg:block rounded-xl bg-background/90 p-3 shadow-xl backdrop-blur-sm animate-float [animation-delay:1s]">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>

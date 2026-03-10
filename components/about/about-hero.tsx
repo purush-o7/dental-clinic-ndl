@@ -40,14 +40,14 @@ export function AboutHero() {
                 />
               </div>
               {/* Experience floating card */}
-              <div className="absolute -bottom-2 -right-4 animate-float rounded-2xl bg-background px-5 py-3 shadow-xl border border-border/50">
-                <p className="text-2xl font-bold text-primary">{STATS[0].value}+</p>
-                <p className="text-xs text-muted-foreground">Years Experience</p>
+              <div className="absolute -bottom-2 -right-2 sm:-right-4 animate-float rounded-2xl bg-background px-3 py-2 sm:px-5 sm:py-3 shadow-xl border border-border/50">
+                <p className="text-lg sm:text-2xl font-bold text-primary">{STATS[0].value}+</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">Years Experience</p>
               </div>
               {/* Patients floating card */}
-              <div className="absolute -top-2 -left-4 animate-float-delayed rounded-2xl bg-background px-5 py-3 shadow-xl border border-border/50">
-                <p className="text-2xl font-bold text-primary">{STATS[1].value}+</p>
-                <p className="text-xs text-muted-foreground">Happy Patients</p>
+              <div className="absolute -top-2 -left-2 sm:-left-4 animate-float-delayed rounded-2xl bg-background px-3 py-2 sm:px-5 sm:py-3 shadow-xl border border-border/50">
+                <p className="text-lg sm:text-2xl font-bold text-primary">{STATS[1].value}+</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">Happy Patients</p>
               </div>
             </div>
           </ScrollReveal>

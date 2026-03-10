@@ -11,7 +11,7 @@ export function BookNowFab() {
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="fixed bottom-40 right-6 z-40 h-12 rounded-full px-5 shadow-lg"
+        className="fixed bottom-34 right-4 z-40 h-10 sm:h-12 rounded-full px-4 sm:px-5 shadow-lg sm:bottom-40 sm:right-6"
         size="lg"
       >
         <svg

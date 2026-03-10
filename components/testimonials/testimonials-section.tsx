@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Container } from "@/components/common/container";
 import { SectionHeader } from "@/components/common/section-header";
 import { ScrollReveal } from "@/components/common/scroll-reveal";
@@ -34,7 +35,7 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-function MarqueeCard({ testimonial }: { testimonial: Testimonial }) {
+function TestimonialCard({ testimonial, className = "" }: { testimonial: Testimonial; className?: string }) {
   const initials = testimonial.name
     .split(" ")
     .map((n) => n[0])
@@ -42,7 +43,7 @@ function MarqueeCard({ testimonial }: { testimonial: Testimonial }) {
     .slice(0, 2);
 
   return (
-    <Card className="group w-[380px] shrink-0 border-border/50 bg-background transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 relative overflow-hidden">
+    <Card className={`group border-border/50 bg-background transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 relative overflow-hidden ${className}`}>
       {/* Large quote mark */}
       <div className="pointer-events-none absolute right-4 top-2 text-8xl font-serif leading-none text-primary/[0.06] select-none">
         &rdquo;
@@ -92,10 +93,89 @@ function MarqueeRow({ items, reverse = false }: { items: Testimonial[]; reverse?
         className={`flex gap-6 py-2 ${reverse ? "animate-[marquee-reverse_45s_linear_infinite]" : "animate-[marquee_45s_linear_infinite]"} hover:[animation-play-state:paused]`}
       >
         {doubled.map((testimonial, i) => (
-          <MarqueeCard key={`${testimonial.id}-${i}`} testimonial={testimonial} />
+          <TestimonialCard key={`${testimonial.id}-${i}`} testimonial={testimonial} className="w-[380px] shrink-0" />
         ))}
       </div>
     </div>
+  );
+}
+
+function MobileCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const total = TESTIMONIALS.length;
+
+  const goTo = useCallback((index: number) => {
+    setCurrent((index + total) % total);
+  }, [total]);
+
+  // Auto-slide every 4 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % total);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused, total]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+    }
+    // Resume auto-slide after 6s
+    setTimeout(() => setIsPaused(false), 6000);
+  };
+
+  return (
+    <Container>
+      <div
+        className="relative overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Cards track */}
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {TESTIMONIALS.map((testimonial) => (
+            <div key={testimonial.id} className="w-full shrink-0 px-1">
+              <TestimonialCard testimonial={testimonial} />
+            </div>
+          ))}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i); setIsPaused(true); setTimeout(() => setIsPaused(false), 6000); }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === current
+                  ? "w-6 bg-primary"
+                  : "w-2 bg-primary/25 hover:bg-primary/40"
+              }`}
+              aria-label={`Go to testimonial ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Counter */}
+        <p className="mt-3 text-center text-xs text-muted-foreground">
+          {current + 1} / {total}
+        </p>
+      </div>
+    </Container>
   );
 }
 
@@ -156,8 +236,13 @@ export function TestimonialsSection() {
         <AggregateRating />
       </Container>
 
-      {/* Full-bleed marquee rows */}
-      <div className="space-y-6 mt-2">
+      {/* Mobile + Tablet: auto-sliding carousel */}
+      <div className="lg:hidden mt-2">
+        <MobileCarousel />
+      </div>
+
+      {/* Desktop: marquee rows */}
+      <div className="hidden lg:block space-y-6 mt-2">
         <MarqueeRow items={row1} />
         <MarqueeRow items={row2} reverse />
       </div>
