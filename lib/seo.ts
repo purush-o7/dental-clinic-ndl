@@ -197,7 +197,7 @@ export function getDoctorSchema() {
     ],
     memberOf: {
       "@type": "Organization",
-      name: "International Congress of Oral Implantologists",
+      name: "Indian Prosthodontic Society",
     },
   };
 }

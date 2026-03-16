@@ -10,8 +10,8 @@ import type {
 } from "./types";
 
 export const CLINIC = {
-  name: "K.M. Reddy Dental Care",
-  tagline: "Your Smile, Our Passion",
+  name: "K.M. Reddy Dental Care & Implant Center",
+  tagline: "Your Smile — Our Specialty",
   address:
     "D.No. 25-395-4-E2, Saleem Nagar, Near Municipal Office, Nandyal",
   phones: ["+91 995 915 3005", "+91 085 143 14856"],
@@ -335,59 +335,54 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const DOCTOR: DoctorProfile = {
-  name: "Dr. K. Mallikarjuna Reddy",
-  title: "Founder & Chief Dental Surgeon",
-  qualifications: ["BDS", "MDS (Prosthodontics)", "FICOI (USA)"],
+  name: "Dr. Kummithi Malleswara Reddy",
+  title: "Director & Lead Dental Surgeon",
+  qualifications: ["MDS (Prosthodontics)"],
   bio: "With over 11 years of experience in advanced dentistry, Dr. K.M. Reddy is a renowned dental surgeon specializing in implantology and prosthodontics. He founded K.M. Reddy Dental Care with a vision to provide world-class dental treatment accessible to everyone. His expertise spans from complex full-mouth rehabilitations to delicate cosmetic procedures, always prioritizing patient comfort and long-lasting results.",
   education: [
     {
       degree: "BDS",
-      institution: "Kamineni Institute of Dental Sciences",
+      institution: "Government Dental College, Kadapa, Andhra Pradesh",
       year: "2011",
     },
     {
       degree: "MDS (Prosthodontics)",
-      institution: "Sri Sai College of Dental Surgery",
+      institution: "VYWS Dental College, Amravati, Maharashtra",
       year: "2015",
-    },
-    {
-      degree: "FICOI",
-      institution: "International Congress of Oral Implantologists, USA",
-      year: "2018",
     },
   ],
   awards: [
     {
-      title: "Best Implantologist Award",
-      organization: "Indian Dental Association, Telangana",
-      year: "2020",
+      title: "First Prize — Paper on 'Establishing Correlation between Tongue, Palate and Palatal Plate'",
+      organization: "IPS P.G. Convention, Bangalore",
+      year: "2017",
     },
     {
-      title: "Excellence in Prosthodontics",
-      organization: "IDA National Conference",
-      year: "2019",
+      title: "First Prize — Paper on 'Sectional Denture'",
+      organization: "GENEX-2017, Amravati",
+      year: "2017",
     },
     {
-      title: "Young Dentist Award",
-      organization: "Dental Council of India",
+      title: "Second Prize — Poster on 'Mini Dental Implants'",
+      organization: "GENEX-2017, Amravati",
       year: "2017",
     },
   ],
   publications: [
     {
-      title: "Immediate Loading Implants: A Clinical Study",
-      journal: "Journal of Indian Prosthodontic Society",
-      year: "2020",
+      title: "Establishing Correlation between Tongue, Palate and Palatal Plate",
+      journal: "Peer-reviewed journal on Prosthodontics",
+      year: "2017",
     },
     {
-      title: "Full Mouth Rehabilitation Using Implant-Supported Prostheses",
-      journal: "International Journal of Oral Implantology",
-      year: "2019",
+      title: "Sectional Denture",
+      journal: "Peer-reviewed journal on Prosthodontics",
+      year: "2017",
     },
     {
-      title: "CAD/CAM in Modern Prosthodontics: A Review",
-      journal: "Journal of Dental Research",
-      year: "2018",
+      title: "Denture Identification Methods",
+      journal: "Peer-reviewed journal on Prosthodontics",
+      year: "2017",
     },
   ],
 };

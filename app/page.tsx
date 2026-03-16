@@ -12,7 +12,7 @@ const homeFaqs = [
   {
     question: "Who is the best dentist in Nandyal?",
     answer:
-      "Dr. K. Mallikarjuna Reddy (BDS, MDS, FICOI) at K.M. Reddy Dental Care is one of the most experienced dentists in Nandyal with over 11 years of experience, 5000+ happy patients, and internationally recognized credentials including FICOI from the USA.",
+      "Dr. Kummithi Malleswara Reddy (MDS Prosthodontics) at K.M. Reddy Dental Care is one of the most experienced dentists in Nandyal with over 11 years of experience, 5000+ happy patients, and award-winning expertise in implantology and prosthodontics.",
   },
   {
     question: "What dental services are available at K.M. Reddy Dental Care?",

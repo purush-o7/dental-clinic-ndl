@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | K.M. Reddy Dental Care, Nandyal",
   },
   description:
-    "K.M. Reddy Dental Care is the leading dental clinic in Nandyal, Andhra Pradesh. Dr. K. Mallikarjuna Reddy (BDS, MDS, FICOI) offers dental implants, cosmetic dentistry, orthodontics, root canal treatment & 13+ services. 11+ years experience, 5000+ happy patients, 98% satisfaction rate. Book appointment now.",
+    "K.M. Reddy Dental Care is the leading dental clinic in Nandyal, Andhra Pradesh. Dr. Kummithi Malleswara Reddy (MDS Prosthodontics) offers dental implants, cosmetic dentistry, orthodontics, root canal treatment & 13+ services. 11+ years experience, 5000+ happy patients, 98% satisfaction rate. Book appointment now.",
   keywords: [
     "dentist in Nandyal",
     "best dentist Nandyal",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "teeth whitening Nandyal",
     "K.M. Reddy Dental Care",
     "KM Reddy dental",
-    "Dr K Mallikarjuna Reddy",
+    "Dr Kummithi Malleswara Reddy",
     "dental hospital Nandyal",
     "dental implant center Nandyal",
     "best dental clinic Andhra Pradesh",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "oral surgery Nandyal",
     "family dentist Nandyal",
   ],
-  authors: [{ name: "Dr. K. Mallikarjuna Reddy" }],
+  authors: [{ name: "Dr. Kummithi Malleswara Reddy" }],
   creator: "K.M. Reddy Dental Care",
   publisher: "K.M. Reddy Dental Care",
   robots: {
