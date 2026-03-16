@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -7,6 +9,7 @@ import {
 import { ToothIcon, ToothImplantIcon, ToothSparkleIcon, BracesIcon, SmileTeethIcon, DentalMirrorIcon } from "@/components/common/dental-icons";
 import type { Service } from "@/lib/types";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const serviceIcons: Record<string, React.ReactNode> = {
   tooth: <ToothImplantIcon size={28} />,
@@ -37,23 +40,27 @@ export function getServiceIcon(iconName: string) {
 export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
   return (
     <Link href={`/services/${service.slug}`} className="group block">
-      <Card className="h-full border-border/50 bg-gradient-to-br from-background to-secondary/30 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-primary/20">
-        <CardHeader>
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3">
-            {getServiceIcon(service.iconName)}
-          </div>
-          <CardTitle className="text-lg group-hover:text-primary transition-colors duration-300">
-            {service.title}
-          </CardTitle>
-          <CardDescription className="leading-relaxed">
-            {service.shortDescription}
-          </CardDescription>
-          <div className="mt-3 flex items-center text-sm font-medium text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
-            Learn more
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </div>
-        </CardHeader>
-      </Card>
+      <motion.div
+        whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+      >
+        <Card className="h-full border-border/50 bg-gradient-to-br from-background to-secondary/30 transition-all duration-500 hover:shadow-xl hover:border-primary/20">
+          <CardHeader>
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3">
+              {getServiceIcon(service.iconName)}
+            </div>
+            <CardTitle className="text-lg group-hover:text-primary transition-colors duration-300">
+              {service.title}
+            </CardTitle>
+            <CardDescription className="leading-relaxed">
+              {service.shortDescription}
+            </CardDescription>
+            <div className="mt-3 flex items-center text-sm font-medium text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </CardHeader>
+        </Card>
+      </motion.div>
     </Link>
   );
 }

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 
 interface IconProps {
   className?: string;
@@ -143,9 +144,20 @@ export function FloatingTooth({
   size = 32,
 }: IconProps) {
   return (
-    <div className={cn("animate-tooth-bounce text-primary/15", className)}>
+    <motion.div
+      className={cn("text-primary/15", className)}
+      animate={{
+        y: [0, -10, 0],
+        rotate: [0, 5, -5, 0],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
       <ToothIcon size={size} />
-    </div>
+    </motion.div>
   );
 }
 

@@ -5,6 +5,7 @@ import { Container } from "@/components/common/container";
 import { SectionHeader } from "@/components/common/section-header";
 import { ToothIcon } from "@/components/common/dental-icons";
 import { FAMILY_CARD } from "@/lib/data";
+import { motion } from "motion/react";
 
 const benefitIcons = [
   // Discounted Treatments - percentage/tag
@@ -23,7 +24,7 @@ const benefitIcons = [
 
 export function FamilyCardDetails() {
   return (
-    <section className="py-20 bg-secondary/30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-secondary/30">
       <Container>
         <SectionHeader
           badge="Benefits"
@@ -34,7 +35,10 @@ export function FamilyCardDetails() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {FAMILY_CARD.benefits.map((benefit, i) => (
             <ScrollReveal key={benefit.title} animation="fade-up" delay={i * 100}>
-              <div className="group relative h-full rounded-2xl border border-border/50 bg-background p-7 transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1">
+              <motion.div
+                whileHover={{ y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative h-full rounded-2xl border border-border/50 bg-background p-7 transition-all duration-300 hover:shadow-xl hover:border-primary/20"
+              >
                 {/* Icon */}
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                   {benefitIcons[i]}
@@ -43,7 +47,7 @@ export function FamilyCardDetails() {
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
-              </div>
+              </motion.div>
             </ScrollReveal>
           ))}
         </div>

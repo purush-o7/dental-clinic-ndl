@@ -8,7 +8,7 @@ import { SAINIK_PARIVAR } from "@/lib/data";
 
 export function SainikParivar() {
   return (
-    <section className="py-20">
+    <section id="sainik-parivar" className="py-20 scroll-mt-20">
       <Container>
         <SectionHeader
           badge="Special Initiative"

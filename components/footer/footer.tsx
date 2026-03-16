@@ -5,6 +5,7 @@ import { SocialLinks } from "@/components/common/social-links";
 import { FooterMap } from "./footer-map";
 import { CLINIC, NAV_LINKS, SERVICES } from "@/lib/data";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/common/scroll-reveal";
 
 export function Footer() {
   const topServices = SERVICES.slice(0, 6);
@@ -12,6 +13,7 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-background">
       <Container className="py-16">
+        <ScrollReveal animation="fade-up">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
@@ -114,6 +116,7 @@ export function Footer() {
           </div>
         </div>
 
+        </ScrollReveal>
         <Separator className="my-8 bg-background/20" />
 
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">

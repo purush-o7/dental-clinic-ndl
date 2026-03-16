@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { TESTIMONIALS } from "@/lib/data";
 import type { Testimonial } from "@/lib/types";
+import { motion, AnimatePresence } from "motion/react";
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -43,7 +44,7 @@ function TestimonialCard({ testimonial, className = "" }: { testimonial: Testimo
     .slice(0, 2);
 
   return (
-    <Card className={`group border-border/50 bg-background transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 relative overflow-hidden ${className}`}>
+    <Card className={`group border-border/50 bg-background transition-all duration-300 hover:shadow-xl hover:border-primary/20 relative overflow-hidden ${className}`}>
       {/* Large quote mark */}
       <div className="pointer-events-none absolute right-4 top-2 text-8xl font-serif leading-none text-primary/[0.06] select-none">
         &rdquo;
@@ -143,15 +144,19 @@ function MobileCarousel() {
         onTouchEnd={handleTouchEnd}
       >
         {/* Cards track */}
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
-          {TESTIMONIALS.map((testimonial) => (
-            <div key={testimonial.id} className="w-full shrink-0 px-1">
-              <TestimonialCard testimonial={testimonial} />
-            </div>
-          ))}
+        <div className="relative min-h-[220px]">
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="w-full px-1"
+            >
+              <TestimonialCard testimonial={TESTIMONIALS[current]} />
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Dot indicators */}
@@ -160,13 +165,15 @@ function MobileCarousel() {
             <button
               key={i}
               onClick={() => { goTo(i); setIsPaused(true); setTimeout(() => setIsPaused(false), 6000); }}
-              className={`h-2 rounded-full transition-all duration-300 ${
+              className="relative h-2 rounded-full"
+              aria-label={`Go to testimonial ${i + 1}`}
+            >
+              <span className={`block h-2 rounded-full transition-all duration-300 ${
                 i === current
                   ? "w-6 bg-primary"
                   : "w-2 bg-primary/25 hover:bg-primary/40"
-              }`}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
+              }`} />
+            </button>
           ))}
         </div>
 
@@ -243,8 +250,12 @@ export function TestimonialsSection() {
 
       {/* Desktop: marquee rows */}
       <div className="hidden lg:block space-y-6 mt-2">
-        <MarqueeRow items={row1} />
-        <MarqueeRow items={row2} reverse />
+        <ScrollReveal animation="fade-up">
+          <MarqueeRow items={row1} />
+        </ScrollReveal>
+        <ScrollReveal animation="fade-up" delay={150}>
+          <MarqueeRow items={row2} reverse />
+        </ScrollReveal>
       </div>
     </section>
   );

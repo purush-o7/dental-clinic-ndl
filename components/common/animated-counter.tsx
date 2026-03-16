@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useMotionValue, useSpring, useInView } from "motion/react";
 
 export function AnimatedCounter({
   value,
@@ -12,36 +13,23 @@ export function AnimatedCounter({
   duration?: number;
 }) {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const spring = useSpring(motionValue, { stiffness: 50, damping: 20 });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          const startTime = performance.now();
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, motionValue, value]);
 
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * value));
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [value, duration, hasAnimated]);
+  useEffect(() => {
+    const unsubscribe = spring.on("change", (latest) => {
+      setCount(Math.floor(latest));
+    });
+    return unsubscribe;
+  }, [spring]);
 
   return (
     <span ref={ref}>

@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { WhatsappFab } from "@/components/common/whatsapp-fab";
-import { FamilyCardFab } from "@/components/common/family-card-fab";
+import { SpecialOffersPopup } from "@/components/common/special-offers-popup";
 import { BookNowFab } from "@/components/common/book-now-fab";
 import { getLocalBusinessSchema, getWebsiteSchema, SITE_META } from "@/lib/seo";
 
@@ -117,8 +117,8 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsappFab />
-        <FamilyCardFab />
         <BookNowFab />
+        <SpecialOffersPopup />
         <Toaster />
       </body>
     </html>

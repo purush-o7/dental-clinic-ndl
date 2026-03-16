@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Container } from "@/components/common/container";
 import { NavbarLinks } from "./navbar-links";
@@ -5,12 +7,32 @@ import { MobileMenu } from "./mobile-menu";
 import { NavbarCta } from "./navbar-cta";
 import { CLINIC } from "@/lib/data";
 import Link from "next/link";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function Navbar() {
+  const { scrollY } = useScroll();
+
+  const height = useTransform(scrollY, [0, 100], ["4rem", "3.5rem"]);
+  const shadow = useTransform(
+    scrollY,
+    [0, 50, 150],
+    [
+      "0 0 0 0 rgba(0,0,0,0)",
+      "0 1px 6px 0 rgba(0,0,0,0.04)",
+      "0 4px 20px -2px rgba(0,0,0,0.08)",
+    ]
+  );
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
+    <motion.header
+      className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl"
+      style={{ boxShadow: shadow }}
+    >
       <Container>
-        <div className="flex h-16 items-center justify-between">
+        <motion.div
+          className="flex items-center justify-between"
+          style={{ height }}
+        >
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.png"
@@ -36,8 +58,8 @@ export function Navbar() {
               <MobileMenu />
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
-    </header>
+    </motion.header>
   );
 }

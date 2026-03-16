@@ -3,6 +3,7 @@
 import { Container } from "@/components/common/container";
 import { ScrollReveal } from "@/components/common/scroll-reveal";
 import { CLINIC } from "@/lib/data";
+import { motion } from "motion/react";
 
 const cards = [
   {
@@ -47,7 +48,10 @@ export function ContactInfoCards() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card, i) => (
             <ScrollReveal key={card.title} animation="fade-up" delay={i * 120}>
-              <div className="group relative h-full rounded-2xl border border-border/50 bg-background p-8 text-center transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1">
+              <motion.div
+                whileHover={{ y: -4, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative h-full rounded-2xl border border-border/50 bg-background p-8 text-center transition-all duration-300 hover:shadow-xl hover:border-primary/20"
+              >
                 {/* Icon */}
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                   {card.icon}
@@ -71,7 +75,7 @@ export function ContactInfoCards() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                   </a>
                 )}
-              </div>
+              </motion.div>
             </ScrollReveal>
           ))}
         </div>
